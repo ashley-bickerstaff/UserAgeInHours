@@ -13,14 +13,11 @@
             <?php foreach ($existingEntries as $entry): ?>
                 <tr>
                     <td><?php echo $this->escapeHtml($entry->getName()) ?></td>
-                    <td><?php echo $this->escapeHtml($entry->getDateOfBirth()) ?></td>
-                    <td><?php echo $this->escapeHtml($entry->getTimestamp()) ?></td>
+                    <td><?php echo $this->intervalYearsDaysHours($entry->getDateOfBirth(), $currentDateTime) ?></td>
+                    <td><?php echo $this->dateFormat($entry->getTimestamp(), IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, 'en_GB'); ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
-
-        <?php echo $this->intervalYearsDaysHours(new \DateTime('1990-04-15'), new \DateTime()) ?>
-
     </div>
 </div>

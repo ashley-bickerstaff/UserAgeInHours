@@ -130,11 +130,11 @@ class Entry implements ArraySerializableInterface
         }
 
         if (isset($array[self::FIELD_DOB])) {
-            $this->setDateOfBirth($array[self::FIELD_DOB]);
+            $this->setDateOfBirth(new \DateTime($array[self::FIELD_DOB]));
         }
 
         if (isset($array[self::FIELD_TIMESTAMP])) {
-            $this->setTimestamp($array[self::FIELD_TIMESTAMP]);
+            $this->setTimestamp(new \DateTime($array[self::FIELD_TIMESTAMP]));
         }
     }
 

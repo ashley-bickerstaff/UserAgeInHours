@@ -60,8 +60,8 @@ class IntervalYearsDaysHours extends AbstractHelper
          * Output the number of years, followed by the number of days in the foreshortened
          * interval and finally, the number of hours.
          *
-         * This could be improved using localisation.
+         * This could be improved using localisation and pluralisation.
          */
-        return $subYearInterval->format($numberOfYears . ' years, %a days and %h hours');
+        return $subYearInterval->format($numberOfYears . ' years, %a day(s) and %h hour(s)');
     }
 }

@@ -27,6 +27,7 @@ class IndexController extends AbstractActionController
 //            var_dump($entry);
 //        }
         return new ViewModel(array(
+            'currentDateTime' => new \DateTime(),
             'existingEntries' => $entries
         ));
     }
