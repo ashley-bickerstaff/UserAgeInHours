@@ -92,6 +92,11 @@ return array(
             }
         ),
     ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'IntervalYearsDaysHours' => 'Application\View\Helper\IntervalYearsDaysHours'
+        )
+    ),
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,

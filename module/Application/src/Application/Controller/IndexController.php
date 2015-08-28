@@ -23,10 +23,12 @@ class IndexController extends AbstractActionController
     {
         $entryService = $this->getEntryService();
         $entries = $entryService->getAll();
-        foreach ($entries as $entry) {
-            var_dump($entry);
-        }
-        return new ViewModel();
+//        foreach ($entries as $entry) {
+//            var_dump($entry);
+//        }
+        return new ViewModel(array(
+            'existingEntries' => $entries
+        ));
     }
 
     public function setEntryService($entryService)

@@ -18,7 +18,7 @@ class Entry implements ArraySerializableInterface
 
     const FIELD_ID = 'id';
     const FIELD_NAME = 'name';
-    const FIELD_DOB = 'dob';
+    const FIELD_DOB = 'date_of_birth';
     const FIELD_TIMESTAMP = 'timestamp';
 
     /**

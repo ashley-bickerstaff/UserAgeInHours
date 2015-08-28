@@ -10,13 +10,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>blah</td>
-                <td>blah</td>
-                <td>blah</td>
-            </tr>
+            <?php foreach ($existingEntries as $entry): ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($entry->getName()) ?></td>
+                    <td><?php echo $this->escapeHtml($entry->getDateOfBirth()) ?></td>
+                    <td><?php echo $this->escapeHtml($entry->getTimestamp()) ?></td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
+
+        <?php echo $this->intervalYearsDaysHours(new \DateTime('1990-04-15'), new \DateTime()) ?>
 
     </div>
 </div>
