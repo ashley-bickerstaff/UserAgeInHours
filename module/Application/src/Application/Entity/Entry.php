@@ -11,8 +11,15 @@
 
 namespace Application\Entity;
 
-class Entry
+use Zend\Stdlib\ArraySerializableInterface;
+
+class Entry implements ArraySerializableInterface
 {
+
+    const FIELD_ID = 'id';
+    const FIELD_NAME = 'name';
+    const FIELD_DOB = 'dob';
+    const FIELD_TIMESTAMP = 'timestamp';
 
     /**
      * @var int
@@ -104,5 +111,45 @@ class Entry
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * Exchange internal values from provided array
+     *
+     * @param  array $array
+     * @return void
+     */
+    public function exchangeArray(array $array)
+    {
+        if (isset($array[self::FIELD_ID])) {
+            $this->setId($array[self::FIELD_ID]);
+        }
+
+        if (isset($array[self::FIELD_NAME])) {
+            $this->setName($array[self::FIELD_NAME]);
+        }
+
+        if (isset($array[self::FIELD_DOB])) {
+            $this->setDateOfBirth($array[self::FIELD_DOB]);
+        }
+
+        if (isset($array[self::FIELD_TIMESTAMP])) {
+            $this->setTimestamp($array[self::FIELD_TIMESTAMP]);
+        }
+    }
+
+    /**
+     * Return an array representation of the object
+     *
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return array(
+            self::FIELD_ID => $this->getId(),
+            self::FIELD_NAME => $this->getName(),
+            self::FIELD_DOB => $this->getDateOfBirth(),
+            self::FIELD_TIMESTAMP => $this->getTimestamp()
+        );
     }
 }

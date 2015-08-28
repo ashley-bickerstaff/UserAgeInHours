@@ -20,10 +20,6 @@ return array(
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -58,12 +54,42 @@ return array(
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
         'factories' => array(
-            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+
+            /**
+             * For simplicity, we construct this table gateway in the service manager.
+             * This could be factoried out to a separate class (even removing the SM entirely).
+             */
+            'EntriesTableGateway' => function($serviceManager) {
+
+                $databaseAdapter = $serviceManager->get('Zend\Db\Adapter');
+                $resultSet = new \Zend\Db\ResultSet\ResultSet();
+                $resultSet->setArrayObjectPrototype(new \Application\Entity\Entry());
+
+                $tableGateway = new \Zend\Db\TableGateway\TableGateway('entries', $databaseAdapter, null, $resultSet);
+                return $tableGateway;
+            },
+            'DatabaseTableStorage' => function($serviceManager) {
+
+                $storage = new \Application\Service\Storage\DatabaseTable($serviceManager->get('EntriesTableGateway'));
+                return $storage;
+            }
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+        'factories' => array(
+            'Application\Controller\Index' => function($controllerManager) {
+
+                // We have to get the *actual* SM here as this is currently the controller manager derivative.
+                $serviceManager = $controllerManager->getServiceLocator();
+
+                $storage = $serviceManager->get('DatabaseTableStorage');
+                $entryService = new \Application\Service\EntryService($storage);
+
+                $controller = new \Application\Controller\IndexController();
+                $controller->setEntryService($entryService);
+
+                return $controller;
+            }
         ),
     ),
     'view_manager' => array(

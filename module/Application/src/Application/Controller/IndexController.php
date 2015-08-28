@@ -16,8 +16,26 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+
+    protected $entryService;
+
     public function indexAction()
     {
+        $entryService = $this->getEntryService();
+        $entries = $entryService->getAll();
+        foreach ($entries as $entry) {
+            var_dump($entry);
+        }
         return new ViewModel();
+    }
+
+    public function setEntryService($entryService)
+    {
+        $this->entryService = $entryService;
+    }
+
+    public function getEntryService()
+    {
+        return $this->entryService;
     }
 }
