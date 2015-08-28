@@ -1,10 +1,12 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Front controller for the application.
  *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @category   Application
+ * @package    Application\Controller
+ * @class      IndexController
+ * @copyright  Copyright (c) 2015
+ * @author     Ashley Bickerstaff
  */
 
 namespace Application\Controller;
