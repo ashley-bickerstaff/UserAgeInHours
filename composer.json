@@ -1,0 +1,10 @@
+{
+    "name": "pawcode/userageinhours",
+    "description": "A simple demonstration application that converts a user's age into days and hours",
+    "license": "BSD-3-Clause",
+    "keywords": [],
+    "require": {
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.5"
+    }
+}
