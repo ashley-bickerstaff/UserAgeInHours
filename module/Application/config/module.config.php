@@ -74,6 +74,9 @@ return array(
                 return $storage;
             }
         ),
+        'invokables' => array(
+            'Application\InputFilter\EntryInputFilter' => 'Application\InputFilter\EntryInputFilter'
+        )
     ),
     'controllers' => array(
         'factories' => array(
@@ -85,8 +88,11 @@ return array(
                 $storage = $serviceManager->get('DatabaseTableStorage');
                 $entryService = new \Application\Service\EntryService($storage);
 
+                $inputFilter = $serviceManager->get('Application\InputFilter\EntryInputFilter');
+
                 $controller = new \Application\Controller\IndexController();
                 $controller->setEntryService($entryService);
+                $controller->setEntryInputFilter($inputFilter);
 
                 return $controller;
             }

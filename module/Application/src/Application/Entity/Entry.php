@@ -78,7 +78,7 @@ class Entry implements ArraySerializableInterface
     }
 
     /**
-     * @param string $dob
+     * @param \DateTime $dob
      * @return $this
      */
     public function setDateOfBirth($dob)
@@ -88,7 +88,7 @@ class Entry implements ArraySerializableInterface
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateOfBirth()
     {
@@ -106,7 +106,7 @@ class Entry implements ArraySerializableInterface
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getTimestamp()
     {
@@ -130,7 +130,11 @@ class Entry implements ArraySerializableInterface
         }
 
         if (isset($array[self::FIELD_DOB])) {
-            $this->setDateOfBirth(new \DateTime($array[self::FIELD_DOB]));
+
+            if (!$array[self::FIELD_DOB] instanceof \DateTime) {
+                $array[self::FIELD_DOB] = new \DateTime($array[self::FIELD_DOB]);
+            }
+            $this->setDateOfBirth($array[self::FIELD_DOB]);
         }
 
         if (isset($array[self::FIELD_TIMESTAMP])) {

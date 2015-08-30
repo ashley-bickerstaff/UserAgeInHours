@@ -36,9 +36,20 @@ class EntryService
         return $this->getStorage()->getAll();
     }
 
-    public function create(Entry $entry)
+    public function create(array $entryData)
     {
+        $entry = new Entry();
 
+        /**
+         * Convert to a valid \DateTime instance with a 'zero' time.
+         */
+        $dateOfBirth = \DateTime::createFromFormat('d/m/Y', $entryData[Entry::FIELD_DOB]);
+        $dateOfBirth->setTime(0,0,0);
+        $entryData[Entry::FIELD_DOB] = $dateOfBirth;
+
+        $entry->exchangeArray($entryData);
+
+        return $this->getStorage()->create($entry);
     }
 
     /**

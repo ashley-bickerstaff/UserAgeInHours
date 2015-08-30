@@ -11,6 +11,7 @@
 
 namespace Application\Service\Storage;
 
+use Application\Entity\Entry;
 use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -69,6 +70,9 @@ class DatabaseTable implements StorageInterface
      */
     public function create($entity)
     {
-        // TODO: Implement create() method.
+        return $this->getTableGateway()->insert(array(
+            Entry::FIELD_NAME => $entity->getName(),
+            Entry::FIELD_DOB => $entity->getDateOfBirth()->format("Y-m-d H:i:s")
+        ));
     }
 }
