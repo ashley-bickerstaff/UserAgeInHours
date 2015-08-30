@@ -32,6 +32,8 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
 
+        $insertId = null;
+        $errorMessages = null;
 
         $entryService = $this->getEntryService();
 
@@ -50,17 +52,19 @@ class IndexController extends AbstractActionController
                 $validValues = $inputFilter->getValues();
                 $insertId = $entryService->create($validValues);
 
-                var_dump($insertId);
+            } else {
 
+                $errorMessages = $inputFilter->getMessages();
             }
-
         }
 
         $entries = $entryService->getAll();
 
         return new ViewModel(array(
             'currentDateTime' => new \DateTime(),
-            'existingEntries' => $entries
+            'existingEntries' => $entries,
+            'insertId' => $insertId,
+            'errorMessages' => $errorMessages
         ));
     }
 

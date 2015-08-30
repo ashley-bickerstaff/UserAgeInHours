@@ -19,6 +19,7 @@ class EntryInputFilter extends InputFilter
 
     /**
      * Add our own validation when the class is requested.
+     * @todo These could obviously be improved with custom error messages.
      */
     public function __construct()
     {

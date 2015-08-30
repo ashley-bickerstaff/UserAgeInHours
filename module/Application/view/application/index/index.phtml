@@ -1,6 +1,17 @@
 <div class="row">
     <div class="col-lg-12">
         <p>Enter your full name and date of birth below to see your age in years, days and hours.</p>
+        <?php if (!is_null($errorMessages)): ?>
+            <div class="alert alert-danger">
+                <ul>
+                <?php foreach ($errorMessages as $input): ?>
+                    <?php foreach ($input as $message): ?>
+                        <li><?php echo $message ?></li>
+                    <?php endforeach ?>
+                <?php endforeach ?>
+                </ul>
+            </div>
+        <?php endif; ?>
         <form class="form-inline" method="post">
             <div class="form-group">
                 <label class="sr-only" for="<?php echo \Application\Entity\Entry::FIELD_NAME ?>">Full name</label>
@@ -20,6 +31,11 @@
 <div class="row">
     <div class="col-lg-12">
 
+        <?php if (!is_null($insertId)): ?>
+            <div class="alert alert-success">
+                <p>Your age is below. See, you're not as old as you thought!</p>
+            </div>
+        <?php endif; ?>
         <table class="table table-bordered">
             <thead>
             <tr>
