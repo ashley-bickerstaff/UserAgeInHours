@@ -31,11 +31,20 @@ class EntryService
         $this->setStorage($storage);
     }
 
+    /**
+     * Return all records.
+     * @return mixed
+     */
     public function getAll()
     {
         return $this->getStorage()->getAll();
     }
 
+    /**
+     * Persist an entry record.
+     * @param array $entryData
+     * @return int
+     */
     public function create(array $entryData)
     {
         $entry = new Entry();

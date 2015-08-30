@@ -70,9 +70,10 @@ class DatabaseTable implements StorageInterface
      */
     public function create($entity)
     {
-        return $this->getTableGateway()->insert(array(
+        $affectedRows =  $this->getTableGateway()->insert(array(
             Entry::FIELD_NAME => $entity->getName(),
             Entry::FIELD_DOB => $entity->getDateOfBirth()->format("Y-m-d H:i:s")
         ));
+        return (int) $this->getTableGateway()->getLastInsertValue();
     }
 }
