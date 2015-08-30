@@ -13,3 +13,16 @@ This is a simple demonstration application that will allow a user to enter their
 3. When viewing other users' information, no pagination is required.
 4. Previous user information will persist as long as the storage mechanism is not truncated.
 5. A valid PHP timezone is set on the host server.
+
+##Usage##
+###Installation###
+1. Set up a new MySQL database.
+2. Import the schema in `/sql/schema.sql`
+3. Create the file `/config/autoload/local.php`. Use the contents of `/config/autoload/local.php.dist` as a template and fill in your database credentials. 
+4. Install the project dependencies using composer.
+5. Ensure that your the `APPLICATION_ENV` environment variable is set to `development`
+
+###Tests###
+The primary business logic is supported by unit tests to run these from within the test directory, run:
+
+    ../vendor/bin/phpunit
