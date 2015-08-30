@@ -1,6 +1,8 @@
 #User age in hours#
 This is a simple demonstration application that will allow a user to enter their name and date of birth and then display the number of years, days and hours the person has been alive.
 
+![alt tag](https://raw.github.com/pawcode/UserAgeInHours/master/docs/screenshot.png)
+
 ##Use cases##
 1. As a user, I should be able to enter my full name.
 2. As a user, I should be able enter my date of birth using a date-picker. The date should be in the format DD/MM/YYYY
