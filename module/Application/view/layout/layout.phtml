@@ -12,12 +12,15 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink()->prependStylesheet($this->basePath('css/style.css'))
+                        ->prependStylesheet('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css')
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/page.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile('//code.jquery.com/ui/1.11.4/jquery-ui.js')
             ->prependFile($this->basePath('js/jquery.min.js'))
             ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
             ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
